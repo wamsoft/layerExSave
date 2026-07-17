@@ -9,6 +9,14 @@ using namespace std;
 #define WM_SAVE_TLG_PROGRESS (TVP_WM_USER+4)
 #define WM_SAVE_TLG_DONE     (TVP_WM_USER+5)
 
+// receiver の呼び出し規約は tp_stub.h の tTVPWindowMessageReceiver に合わせる
+// (WIN 版=__stdcall / Generic 版=規約指定なし。x86 ビルドでのみ実差が出る)
+#ifdef __WINVER__
+#define RECEIVER_CALLCONV STDCALL
+#else
+#define RECEIVER_CALLCONV
+#endif
+
 iTJSDispatch2 *getLayerClass(void)
 {
   tTJSVariant var;
@@ -143,7 +151,7 @@ protected:
 	/*
 	 * ウインドウイベント処理レシーバ
 	 */
-	static bool STDCALL receiver(void *userdata, tTVPWindowMessage *Message) {
+	static bool RECEIVER_CALLCONV receiver(void *userdata, tTVPWindowMessage *Message) {
 		if (Message->Msg == WM_SAVE_TLG_PROGRESS) {
 			iTJSDispatch2 *obj = (iTJSDispatch2*)userdata;
 			WindowSaveImage *self = ncbInstanceAdaptor<WindowSaveImage>::GetNativeInstance(obj);
