@@ -4,6 +4,7 @@
 #include "utils.hpp"
 
 #include <vector>
+#include <cstring>
 
 #if !defined(_WIN32)
 // generic(非Windows)ビルドでは windows.h が無いため ULONG が未定義。
