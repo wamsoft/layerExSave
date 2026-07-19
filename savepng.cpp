@@ -3,6 +3,8 @@
 
 #include "zlib.h"
 
+#include <cstring>
+
 #if !defined(_WIN32)
 // generic(非Windows)ビルドでは windows.h が無いため DWORD が未定義。
 // このファイルでは 32bit 符号なし整数の別名としてのみ使用しているので補う。
@@ -60,7 +62,7 @@ public:
 						PngChunk *self = 0)
 	{
 		z_stream zs;
-		ZeroMemory(&zs, sizeof(zs));
+		memset(&zs, 0, sizeof(zs));
 		if (::deflateInit(&zs, level) != Z_OK)
 			TVPThrowExceptionMessage(TJS_W("deflate initialize"));
 
@@ -219,7 +221,7 @@ bool CompressPNG::compress_third (PngChunk &chunk, long width, long height, BufR
 }
 
 static void b64e(tjs_char *p, unsigned char const *r, long len) {
-	tjs_char *b64 = TJS_W("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=");
+	const tjs_char *b64 = TJS_W("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=");
 	long i, stop = len - 3;
 	for (i = 0; i <= stop; i+=3) {
 		*p++ = b64[ (r[i  ] >> 2) & 0x3F ];
@@ -350,7 +352,7 @@ static unsigned CustomDeflate(unsigned char** out, size_t* outsize,
 {
 	int comp_lv = settings ? (int)(tjs_intptr_t)settings->custom_context : 1; //Z_DEFAULT_COMPRESSION;
 
-	std::vector<BYTE> data;
+	std::vector<unsigned char> data;
 	long size = PngChunk::Deflate(data, in, insize, comp_lv);
 	if (size > 0) {
 		*out = (unsigned char*)malloc((size_t)size);

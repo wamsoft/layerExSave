@@ -5,6 +5,12 @@
 
 #include <vector>
 
+#if !defined(_WIN32)
+// generic(非Windows)ビルドでは windows.h が無いため ULONG が未定義。
+// Windows の ULONG (unsigned long) と同じ意味の別名として補う。
+typedef unsigned long ULONG;
+#endif
+
 typedef bool ProgressFunc(int percent, void *userdata);
 
 class CompressBase {

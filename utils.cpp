@@ -4,6 +4,8 @@
 #include <vector>
 #include <cmath>
 
+#include <cstring>
+
 #if !defined(_WIN32)
 // generic(非Windows)ビルドでは windows.h が無いため DWORD が未定義。
 // このファイルでは 32bit 符号なし整数の別名としてのみ使用しているので補う。
@@ -359,7 +361,7 @@ OozeColor(tTJSVariant *result, tjs_int numparams, tTJSVariant **param, iTJSDispa
 	ow = w+2, oh = h+2; // oozed map のサイズ
 	char *o, *otop, *oozed = new char[ow*oh];
 	otop = oozed + ow + 1; // oozed map 左上
-	ZeroMemory(oozed, ow*oh); // クリア
+	memset(oozed, 0, ow*oh); // クリア
 	try {
 		// アルファマップを調べる
 		for (y = 0; y < h; y++) {
