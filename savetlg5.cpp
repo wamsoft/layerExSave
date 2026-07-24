@@ -2,6 +2,7 @@
 #include "savetlg5.hpp"
 
 #include <tlg5/slide.h>
+using lexsave::SlideCompressor;
 #define BLOCK_HEIGHT 4
 //---------------------------------------------------------------------------
 // 圧縮処理用

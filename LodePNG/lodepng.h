@@ -27,6 +27,9 @@ freely, subject to the following restrictions:
 #define LODEPNG_H
 
 #include <string.h> /*for size_t*/
+#include <vector> // 名前空間外で先行 include
+#include <string>
+namespace lexsave { // ThorVG の lodepng とのシンボル衝突回避
 
 extern const char* LODEPNG_VERSION_STRING;
 
@@ -902,6 +905,7 @@ TODO:
 [ ] allow user to give data (void*) to custom allocator
 */
 
+} // namespace lexsave
 #endif /*LODEPNG_H inclusion guard*/
 
 /*

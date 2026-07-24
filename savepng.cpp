@@ -296,6 +296,7 @@ bool CompressPNG::encodeProvinceImage(iTJSDispatch2 *layer, const tjs_char *file
 #pragma message( ": LodePNG used." )
 
 #include "LodePNG/lodepng.h"
+using namespace lexsave; // 名前空間化した lodepng を参照
 
 static bool MakeVectorImage(iTJSDispatch2 *layer, std::vector<unsigned char> &image, long &width, long &height, bool &alpha)
 {

@@ -17,7 +17,9 @@ using namespace std;
 #define RECEIVER_CALLCONV
 #endif
 
-iTJSDispatch2 *getLayerClass(void)
+// 静的リンク時に layerExBTOA/Main.cpp の同名グローバル関数と多重定義衝突
+// するためファイルローカル (internal linkage) にする。
+static iTJSDispatch2 *getLayerClass(void)
 {
   tTJSVariant var;
   TVPExecuteExpression(TJS_W("Layer"), &var);
