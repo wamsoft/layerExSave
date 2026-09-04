@@ -1,0 +1,6 @@
+{
+  "comment": "layerExSave が同梱する第三者コンポーネントのライセンス。更新したら core の licenses/gen_licenses_c.py --mode plugin で LicensesGen.cpp を再生成する。tlg5/slide.* は吉里吉里本体由来なので本体の Kirikiri Z エントリの管轄。",
+  "entries": [
+    { "name": "LodePNG", "group": "plugin:layerExSave", "license": "Zlib", "file": "texts/lodepng.txt", "note": "Layer.saveLayerImagePng 系の PNG 保存に使用 (version 20161127)" }
+  ]
+}

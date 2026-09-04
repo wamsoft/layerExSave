@@ -12,6 +12,7 @@ krkrz_plugin(layerExSave
         utils.cpp
         Main.cpp
         tlg5/slide.cpp
+        LicensesGen.cpp
     INCLUDES
         ${CMAKE_CURRENT_SOURCE_DIR}
     LIBRARIES

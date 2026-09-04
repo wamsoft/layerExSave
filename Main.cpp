@@ -359,3 +359,7 @@ NCB_ATTACH_CLASS_WITH_HOOK(WindowSaveImage, Window) {
 	NCB_METHOD(stopSaveLayerImage);
 };
 
+// 同梱コンポーネント (LodePNG) のライセンスを本体収集機構へ登録
+// (LicensesGen.cpp = licenses/manifest.json から生成)
+extern void RegisterLayerExSaveLicenses();
+NCB_PRE_REGIST_CALLBACK(RegisterLayerExSaveLicenses);
