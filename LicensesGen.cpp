@@ -34,7 +34,11 @@ static const unsigned char lic_00[] = {
 
 void RegisterLayerExSaveLicenses()
 {
-	TVPRegisterLicense(TJS_W("LodePNG"), TJS_W("plugin:layerExSave"), lic_00, 493, 907);
+	try {
+		TVPRegisterLicense(TJS_W("LodePNG"), TJS_W("plugin:layerExSave"), lic_00, 493, 907);
+	} catch (...) {
+		/* 本体が License API を持たない (古い本体) ときは登録しない */
+	}
 }
 
 #else /* !TVP_HAS_LICENSE_API */
